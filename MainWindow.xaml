@@ -90,10 +90,10 @@
                         <Button Style="{StaticResource AccentButtonStyle}" Content="重启程序"/>
                     </InfoBar>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Nav.Contect" Icon="Home" ToolTipService.ToolTip="Home"/>
+                <NavigationViewItem Content="主页" Icon="Home" ToolTipService.ToolTip="浏览最新的资讯"/>
                 <NavigationViewItemSeparator Opacity="1"/>
-                <NavigationViewItem Content="映像来源" Icon="Add" ToolTipService.ToolTip="Images"/>
-                <NavigationViewItem Content="系统定制" Icon="Edit" ToolTipService.ToolTip="Collections">
+                <NavigationViewItem Content="映像来源" Icon="Add" ToolTipService.ToolTip="浏览映像"/>
+                <NavigationViewItem Content="系统定制" Icon="Edit" ToolTipService.ToolTip="自定义映像">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="预设" Icon="OpenFile" ToolTipService.ToolTip="Notes"/>
                         <NavigationViewItem Content="组件移除" Icon="Remove" ToolTipService.ToolTip="Remove" IsEnabled="True"/>

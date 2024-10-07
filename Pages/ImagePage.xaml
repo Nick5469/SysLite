@@ -6,10 +6,69 @@
     xmlns:local="using:SysLite.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:Community="using:CommunityToolkit.WinUI.UI.Controls"
+    mc:Ignorable="d">
 
-    <Grid>
+    <StackPanel>
+        <!--菜单栏-->
+        <CommandBar Background="transparent" IsOpen="False" DefaultLabelPosition="Right" IsSticky="True">
+            <CommandBar.Content>
+                <TextBlock Text="显示本机已部署的Windows操作系统映像." Margin="12,14"/>
+            </CommandBar.Content>
+            <AppBarButton Icon="Sort" IsCompact="True" ToolTipService.ToolTip="Selct" AutomationProperties.Name="Sort">
+                <AppBarButton.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="已部署系统" />
+                        <MenuFlyoutItem Text="挂载映像"  />
+                        <MenuFlyoutItem Text="映像文件(WIM/VHD/VHDX)" />
+                        <MenuFlyoutItem Text="镜像文件(ISO)" />
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            <AppBarSeparator/>
+            <AppBarButton Icon="Add" Label="添加" ToolTipService.ToolTip="添加映像、镜像文件或映像路径">
+                <AppBarButton.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="A" />
+                </AppBarButton.KeyboardAccelerators>
+            </AppBarButton>
+            <AppBarButton Icon="Edit" Label="编辑" />
+            <AppBarButton Icon="Delete" Label="删除" />
+            <AppBarSeparator/>
+            <AppBarButton Icon="Edit" Label="定制" />
+            <AppBarButton Icon="Upload" Label="挂载映像" />
+            <AppBarSeparator/>
+            <AppBarButton Icon="Refresh" Label="刷新" />
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="Setting" Label="设置">
+                    <AppBarButton.KeyboardAccelerators>
+                        <KeyboardAccelerator Modifiers="Control" Key="I" />
+                    </AppBarButton.KeyboardAccelerators>
+                </AppBarButton>
+            </CommandBar.SecondaryCommands>
 
-    </Grid>
+        </CommandBar>
+        
+        <!--映像列表-->
+        <Community:DataGrid ItemsSource="{x:Bind viewModel.ClassImages}" AutoGenerateColumns="False" IsReadOnly="True">
+            <Community:DataGrid.Columns>
+                <Community:DataGridTextColumn Header="映像名称" Binding="{Binding ImageName}"/>
+                <Community:DataGridTextColumn Header="映像标识" Binding="{Binding ImageFlag}"/>
+                <Community:DataGridTextColumn Header="映像版本号" Binding="{Binding ImageVer}"/>
+            </Community:DataGrid.Columns>
+
+            <Community:DataGrid.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="刷新" Icon="Refresh"/>
+                    <MenuFlyoutSeparator/>
+                    <MenuFlyoutItem Text="定制" Icon="Edit"/>
+                    <MenuFlyoutItem Text="挂载映像" Icon="Upload"/>
+                    <MenuFlyoutSeparator/>
+                    <MenuFlyoutItem Text="定位到 映像目录" />
+                    <MenuFlyoutItem Text="定位到 映像文件" Icon="OpenFile"/>
+                </MenuFlyout>
+            </Community:DataGrid.ContextFlyout>
+
+        </Community:DataGrid>
+    </StackPanel>
+
 </Page>
