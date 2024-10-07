@@ -8,4 +8,126 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Window.SystemBackdrop>
+        <MicaBackdrop Kind="Base"/>
+    </Window.SystemBackdrop>
+
+    <Grid>
+        <!--标题栏-->
+        <Grid
+            x:Name="AppTitleBar"
+            Height="48"
+            Margin="48,0,0,0"
+            VerticalAlignment="Top"
+            Padding="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Image
+                x:Name="AppFontIcon"
+                Width="16"
+                Height="16"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Source="/Assets/Square44x44Logo.png" />
+            <TextBlock
+                Margin="12,0,0,0"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Style="{StaticResource CaptionTextBlockStyle}"
+                FontSize="12"
+                Text="SysLite++ - Nick Studio"/>
+        </Grid>
+
+        <!--导航栏-->
+        <NavigationView x:Name="Nav" 
+            Language="zh-CN"
+            Header="Test"
+            PaneTitle=""
+            AlwaysShowHeader="True"
+            IsBackEnabled="False"
+            IsBackButtonVisible="Auto"
+            IsTabStop="False"
+            IsTitleBarAutoPaddingEnabled="False"
+            SelectionChanged="Nav_SelectionChanged">
+
+            <NavigationView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,-10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid x:Name="pageTitle"
+                            Background="Transparent"
+                            Height="44"
+                            VerticalAlignment="Top">
+                            <TextBlock x:Name="title" 
+                            Style="{StaticResource TitleTextBlockStyle}"
+                            FontSize="24"
+                            VerticalAlignment="Center"
+                            Text="{Binding}"/>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </NavigationView.HeaderTemplate>
+
+            <!--建议框-->
+            <NavigationView.AutoSuggestBox>
+                <AutoSuggestBox QueryIcon="Find" PlaceholderText="查找功能..." />
+            </NavigationView.AutoSuggestBox>
+
+            <NavigationView.MenuItems>
+                <!--更新提示-->
+                <NavigationViewItem Visibility="Visible" SelectsOnInvoked="False" Height="140">
+                    <InfoBar
+                        x:Name="Info1"
+                        IsOpen="True"
+                        Title="需要重启"
+                        Message="组件库已更新，重新启动程序以安装此更新"
+                        Severity="Informational">
+                        <Button Style="{StaticResource AccentButtonStyle}" Content="重启程序"/>
+                    </InfoBar>
+                </NavigationViewItem>
+                <NavigationViewItem x:Uid="Nav.Contect" Icon="Home" ToolTipService.ToolTip="Home"/>
+                <NavigationViewItemSeparator Opacity="1"/>
+                <NavigationViewItem Content="映像来源" Icon="Add" ToolTipService.ToolTip="Images"/>
+                <NavigationViewItem Content="系统定制" Icon="Edit" ToolTipService.ToolTip="Collections">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="预设" Icon="OpenFile" ToolTipService.ToolTip="Notes"/>
+                        <NavigationViewItem Content="组件移除" Icon="Remove" ToolTipService.ToolTip="Remove" IsEnabled="True"/>
+                        <NavigationViewItem Content="应用" Icon="Cut" ToolTipService.ToolTip="Apply" IsEnabled="False"/>
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+                <NavigationViewItemSeparator Opacity="1"/>
+                <NavigationViewItem Content="工具箱" Icon="AllApps" ToolTipService.ToolTip="Home"/>
+                <NavigationViewItem Content="外部扩展" Icon="Remote" ToolTipService.ToolTip="Home">
+                    <NavigationViewItem.InfoBadge>
+                        <InfoBadge
+                            Style="{ThemeResource CautionIconInfoBadgeStyle}"
+                            Width="16"
+                            Height="16">
+                            <InfoBadge.IconSource>
+                                <SymbolIconSource Symbol="Sync"/>
+                            </InfoBadge.IconSource>
+                        </InfoBadge>
+                    </NavigationViewItem.InfoBadge>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="官方服务" Icon="Help" ToolTipService.ToolTip="Support"/>
+                <NavigationViewItem Content="技术文档" Icon="Document" ToolTipService.ToolTip="Support"/>
+                <NavigationViewItem Content="问题反馈" Icon="Mail" ToolTipService.ToolTip="Support">
+                    <NavigationViewItem.InfoBadge>
+                        <InfoBadge Value="2" />
+                    </NavigationViewItem.InfoBadge>
+                </NavigationViewItem>
+                <NavigationViewItemSeparator Opacity="1"/>
+            </NavigationView.FooterMenuItems>
+
+            <Frame x:Name="NavContainer" Padding="55,10,0,0"/>
+        </NavigationView>
+    </Grid>
 </Window>
