@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SysLite (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SysLite (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
